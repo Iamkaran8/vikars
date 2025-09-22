@@ -1,15 +1,9 @@
-
-
-import './App.css'
+import AppRoute from "./routes/AppRoute"
 
 function App() {
-
-
   return (
     <>
-      <h1 className="text-[50px] font-bold underline">
-        Hello world!
-      </h1>
+      <AppRoute/>
     </>
   )
 }
