@@ -4,12 +4,14 @@ import Footer from "../components/Footer"
 
 export const StaticLayout = () => {
     return (
-        <div className="container mx-auto">
+        <>
             <Navbar />
-            <main>
-                <Outlet />
-            </main>
-            <Footer />
-        </div>
+            <div className="container mx-auto">
+                <main className="pt-[100px] min-h-screen">
+                    <Outlet />
+                </main>
+                <Footer />
+            </div>
+        </>
     )
 }

@@ -1,48 +1,64 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/Logo.png'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Navigations = [
     { menu: "Home", path: "/" },
-    { menu: "Programs", path: "#programs" },
+    { menu: "Programs", path: "/#programs" },
     { menu: "Blogs", path: "/blogs" }
 ]
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isSticky, setIsSticky] = useState(false);
+
+    // Detect scroll
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsSticky(window.scrollY > 50);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
-        <nav className="w-full flex justify-between py-5 relative  lg:px-10 px-3">
-            <Link to='/'>
-                <img src={logo} alt="Vikars Academy" className='w-[45px] md:w-[64px]' />
-            </Link>
+        <nav
+            className={`
+        fixed top-0 w-full bg-white z-50 
+        transition-all duration-300 ease-in-out
+        ${isSticky ? "shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]" : ""}
+      `}
+        >
+            {/* Container keeps content aligned */}
+            <div className="container mx-auto flex justify-between items-center py-5 lg:px-10 px-3">
 
-            {/* Desktop Menu */}
-            <div className='flex space-x-5 font-medium items-center hidden lg:flex'>
-                {Navigations.map((item) => (
-                    <Link to={item.path} key={item.menu}>{item.menu}</Link>
-                ))}
-                <button className='px-3 py-2 bg-forest text-cream rounded-[5px]'>Book a call</button>
-            </div>
+                {/* Logo */}
+                <Link to='/'>
+                    <img src={logo} alt="Vikars Academy" className='w-[45px] md:w-[64px]' />
+                </Link>
 
-            {/* Hamburger for Mobile */}
-            <div className="lg:hidden flex items-center">
-                <button onClick={() => setIsOpen(true)} className="focus:outline-none">
-                    <svg
-                        className="w-6 h-6 text-gray-700"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M4 6h16M4 12h16M4 18h16"
-                        />
-                    </svg>
-                </button>
+                {/* Desktop Menu */}
+                <div className='flex space-x-5 font-medium items-center hidden lg:flex'>
+                    {Navigations.map((item) => (
+                        <Link to={item.path} key={item.menu}>{item.menu}</Link>
+                    ))}
+                    <button className='px-3 py-2 bg-forest text-cream rounded-[5px]'>Book a call</button>
+                </div>
+
+                {/* Hamburger for Mobile */}
+                <div className="lg:hidden flex items-center">
+                    <button onClick={() => setIsOpen(true)} className="focus:outline-none">
+                        <svg
+                            className="w-6 h-6 text-gray-700"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Off-Canvas Right Menu */}
