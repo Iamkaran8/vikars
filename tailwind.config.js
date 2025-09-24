@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./index.html",
@@ -25,6 +26,9 @@ export default {
         '40' : "40px",
         '48' : "48px",
         '64' : "64px",
+      },
+      fontFamily: {
+       inter: ['Inter', 'sans-serif'],
       },
     },
   },
