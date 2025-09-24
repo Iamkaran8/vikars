@@ -44,9 +44,9 @@ export const Footer = () => {
       </div>
 
       {/* copyright section */}
-      <div className='flex text-gray text-16 font-medium w-full flex-wrap justify-around md:py-5 space-y-3'>
+      <div className='flex text-gray text-16 font-medium w-full flex-wrap justify-around items-center md:py-5'>
         <p className='text-center md:text-left pt-5 md:pt-0 '>Copyright © 2024 Vikars. All Rights Reserved</p>
-        <div className='flex space-x-10'>
+        <div className='flex space-x-10 mt-5 md:mt-0'>
           {Socials.map((social) => (
             <a
               key={social.name}
