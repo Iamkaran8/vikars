@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logofooter.png'
-import { GrLinkedin } from 'react-icons/gr'
-import { FaXTwitter } from 'react-icons/fa6'
-import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import { Socials } from '../datas/socials'
 
 const Footermenus = [
