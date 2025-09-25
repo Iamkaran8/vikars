@@ -8,7 +8,7 @@ export const Banner = () => {
     <div className="bg-cream flex flex-col lg:flex-row lg:pl-24 rounded-[15px] lg:rounded-[35px] items-end overflow-hidden">
 
       {/* text-container */}
-      <div className="w-full lg:w-[40%] flex flex-col justify-center items-center md:items-start px-3 md:px-10 pt-10 md:pt-24 lg:pb-24 text-16 md:text-20 ">
+      <div className="w-full lg:w-[40%] flex flex-col justify-center items-center md:items-start px-3 md:px-10 pt-10 md:pt-24 lg:pb-24">
 
         {/* trusted description */}
         <p className="text-center md:text-left lg:text-nowrap leading-relaxed">
