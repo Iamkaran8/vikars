@@ -1,4 +1,4 @@
-import { useState } from "react";
+ 
 const data =[{title:"CBSE",
               titleText:"Central Board of Secondary Education",
               content:"Programs Designed for Every Student’s Success Whether your child follows CBSE, ICSE, IB, State Board, or is preparing for NEET — our expert tutors ensure clarity, confidence, and top results",
