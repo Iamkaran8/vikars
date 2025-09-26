@@ -12,7 +12,8 @@ export default {
         forest : "#124029",
         mint : "#E4FFCD",
         coral: "#E95D5C",
-        gray : "#b3b6bf"
+        gray : "#b3b6bf",
+        text: "#1240299d"
       },
       fontSize :{
         '14' : "14px",
