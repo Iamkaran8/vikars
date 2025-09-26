@@ -1,18 +1,20 @@
 import { Banner } from "../components/HomeComponents/Banner"
- 
+import { BookDemo } from "../components/HomeComponents/BookDemo"
 import { Faqs } from "../components/HomeComponents/Faqs"
-import { Program } from "../components/HomeComponents/Program-offered"
+ import { Program } from "../components/HomeComponents/Program-offered"
+import {WhatWeOffer} from "../components/HomeComponents/WhatWeOffer"
+ 
  
 export const Home = () => {
   return (
     <>
       <Banner/>
- 
- 
-      <Faqs />
-      
+      <WhatWeOffer />
       <Program />
-       
+      <Faqs />
+      <BookDemo/> 
+      
+         
     </>
   )
 }

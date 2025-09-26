@@ -7,7 +7,7 @@ export const StaticLayout = () => {
         <>
             <Navbar />
             <div className="container mx-auto">
-                <main className="pt-[150px] py-5 lg:px-10 px-3 md:text-16 lg:text-20">
+                <main className="pt-[100px] md:pt-[130px] lg:px-10 px-3 text-16 md:text-20">
                     <Outlet />
                 </main>
                 <Footer />

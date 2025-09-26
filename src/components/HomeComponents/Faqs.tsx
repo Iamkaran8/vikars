@@ -1,42 +1,47 @@
 import { useState } from "react"
 
- const AccordionItem = [{ question: " Is this one-on-one or group tuition?", answer: "Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus," },
-    { question: " Is this one-on-one or group tuition?", answer: "Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus," },
-    { question: " Is this one-on-one or group tuition?", answer: "Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus," },
-    { question: " Is this one-on-one or group tuition?", answer: "Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus," },
- ]
+interface AccordionItemTypes {
+    question: string,
+    answer: string
+}
+
+const AccordionItem: AccordionItemTypes[] = [
+    { question: "Is this one-on-one or group tuition?", answer: "Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus," },
+    { question: "Is this one-on-one or group tuition?", answer: "Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus," },
+    { question: "Is this one-on-one or group tuition?", answer: "Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus," },
+    { question: "Is this one-on-one or group tuition?", answer: "Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus," },
+]
 export const Faqs = () => {
-     const [openIndex, setOpenIndex] = useState <number | null>(0);
-    
-     
-    return(
-        <> 
-        <div className="flex flex-col lg:flex-row lg:px-32 md:px-8 sm:px-0 px-4 pt-8 gap-8" >
-            <div className="md:w-2/2 lg:w-1/2 w-1/1">
-                <h3 className="text-forest text-36  font-bold">
-                    Common Questions Parents Ask:
-                </h3>
-                <p className="text-20">Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam 
-                    eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, </p>
-                    <h2 className="text-32 pt-8">More FAQ</h2>
-            </div>
-            <div className=" md:w-2/2 lg-1/2 w-1/1 ">
-                { AccordionItem.map((item,i) =>(<div className="p-0 md:p-4 pt-4">
-                    <div className="flex justify-between text-forest text-[20px] font-bold "  onClick={ ()=> setOpenIndex( openIndex === i ? null: i ) }> {item.question} <span>{openIndex === i ? "-": "+"}</span></div>
+    const [openIndex, setOpenIndex] = useState<number | null>(0);
+    return (
+        <>
+            <div className="flex flex-col lg:flex-row px-3 md:px-10 lg:px-28 py-5 gap-10" >
+
+                {/* information container */}
+                <div className="w-full lg:w-1/2 flex flex-col justify-between lg:mb-8">
                     <div>
-                        {openIndex === i ? item.answer : null }
+                        <h3 className="text-forest text-28 md:text-38 lg:text-48 leading-none mb-5 font-bold text-center lg:text-start">Common Questions Parents Ask</h3>
+                        <p className="text-center lg:text-start">Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                            eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, </p>
                     </div>
-                    </div>
-                    
-                ))}
-                 
+                    <h2 className="text-[#4984FC] text-center lg:text-start hidden lg:block">More FAQ</h2>
+                </div>
+
+                {/* accordion container */}
+                <div className="w-full lg:w-1/2">
+                    {AccordionItem.map((item, i) => (
+                        <div className="">
+                            <div className="flex justify-between text-forest font-bold " onClick={() => setOpenIndex(openIndex === i ? null : i)}>{item.question}<span>{openIndex === i ? "-" : "+"}</span></div>
+                            <p>
+                                {openIndex === i ? item.answer : null}
+                            </p>
+                            <hr className="bg-forest h-[1.5px] my-8" />
+                        </div>
+                    ))}
+                    <h2 className="text-[#4984FC] text-center lg:text-start lg:hidden">More FAQ</h2>
+                </div>
             </div>
-
-        </div>
         </>
-       
-
     )
 }
 
- 
