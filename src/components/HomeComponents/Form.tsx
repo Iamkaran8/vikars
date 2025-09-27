@@ -28,12 +28,21 @@ export const Form = () => {
     }
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        fetch("https://script.google.com/macros/s/AKfycbyynMlNRw0gC4sxYQ1Gy03DzvywhbvnflshLY75tiu40U8hKEBRGndxinDjYI_km7yF/exec", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `Name=${encodeURIComponent(formData.name)}&Email=${encodeURIComponent(formData.email)}&Board=${encodeURIComponent(formData.board)}&Location=${encodeURIComponent(formData.location)}&Phone=${encodeURIComponent(formData.phone)}`
-
-        });
+        fetch(
+            "https://script.google.com/macros/s/AKfycbyynMlNRw0gC4sxYQ1Gy03DzvywhbvnflshLY75tiu40U8hKEBRGndxinDjYI_km7yF/exec",
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `Name=${encodeURIComponent(formData.name)}&Email=${encodeURIComponent(
+                    formData.email
+                )}&Board=${encodeURIComponent(formData.board)}&Location=${encodeURIComponent(
+                    formData.location
+                )}&Phone=${encodeURIComponent(formData.phone)}`
+            }
+        )
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.error(err));
 
         console.log("Form Submitted:", formData);
         alert(`Hello ${formData.name}, your details are saved!`);
