@@ -23,30 +23,33 @@ export const Form = () => {
         phone: ""
     });
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
-        setFormData({ ...formData, [name]: name === "phone" ? Number(value) : value, })
-    }
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        fetch(
-            "https://script.google.com/macros/s/AKfycbyynMlNRw0gC4sxYQ1Gy03DzvywhbvnflshLY75tiu40U8hKEBRGndxinDjYI_km7yF/exec",
-            {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `Name=${encodeURIComponent(formData.name)}&Email=${encodeURIComponent(
-                    formData.email
-                )}&Board=${encodeURIComponent(formData.board)}&Location=${encodeURIComponent(
-                    formData.location
-                )}&Phone=${encodeURIComponent(formData.phone)}`
-            }
-        )
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.error(err));
-
-        console.log("Form Submitted:", formData);
-        alert(`Hello ${formData.name}, your details are saved!`);
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value }); // Keep as string
     };
+   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  // Create URL-encoded body dynamically
+  const body = Object.entries(formData)
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+    .join("&");
+
+  fetch(
+    "https://script.google.com/macros/s/AKfycbyynMlNRw0gC4sxYQ1Gy03DzvywhbvnflshLY75tiu40U8hKEBRGndxinDjYI_km7yF/exec",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body
+    }
+  )
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      alert(`Hello ${formData.name}, your details are saved!`);
+    })
+    .catch(err => console.error(err));
+};
+
 
     //// To Send OTP To The Mobile Number
     const sendOtp = async () => {
