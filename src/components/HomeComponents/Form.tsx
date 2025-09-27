@@ -28,6 +28,13 @@ export const Form = () => {
     }
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        fetch('https://script.google.com/macros/s/AKfycbyynMlNRw0gC4sxYQ1Gy03DzvywhbvnflshLY75tiu40U8hKEBRGndxinDjYI_km7yF/exec',{
+            method:'POST',
+            headers:{
+                "Content-Type" : "application/x-www-form-urlencoded",
+                body:(`Name=${formData.name}&Email=${formData.email}`)
+            }
+        }).then(res=>res.text())
         console.log("Form Submitted:", formData);
         alert(`Hello ${formData.name}, your details are saved!`);
     };
