@@ -28,7 +28,7 @@ export const Form = () => {
     }
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        fetch('https://script.google.com/macros/s/AKfycbyynMlNRw0gC4sxYQ1Gy03DzvywhbvnflshLY75tiu40U8hKEBRGndxinDjYI_km7yF/exec',{
+        fetch('https://script.google.com/macros/s/AKfycbyLMmW51omJ-GNSf3LbBOzgmWGQo4UFRof_YCadMD67hC5x_2FkKr4nvA__a1tN6vJJ/exec',{
             method:'POST',
             headers:{
                 "Content-Type" : "application/x-www-form-urlencoded",
