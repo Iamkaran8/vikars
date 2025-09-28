@@ -432,23 +432,33 @@ export const Form = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    
-    const setupRecaptcha = async (): Promise<RecaptchaVerifier> => {
+
+
+    const setupRecaptcha = async (): Promise<RecaptchaVerifier | null> => {
+        if (typeof window === "undefined") return null; // prevent server-side errors
+
         if (!window.recaptchaVerifier) {
             window.recaptchaVerifier = new RecaptchaVerifier(
-                "recaptcha-container",  // string ID of your div
-                { size: "invisible" },  // options
-                auth                    // must be the Auth instance
+                "recaptcha-container",
+                { size: "invisible" },
+                auth
             );
             await window.recaptchaVerifier.render();
         }
+
         return window.recaptchaVerifier;
     };
+
+
     const sendOtp = async () => {
+        if (typeof window === "undefined") return; // don't run on server
+
         if (!formData.Phone) return alert("Please enter phone number");
 
         try {
             const recaptcha = await setupRecaptcha();
+            if (!recaptcha) return;
+
             const phoneNumber = formData.Phone.startsWith("+") ? formData.Phone : `+91${formData.Phone}`;
             const confirmation = await signInWithPhoneNumber(auth, phoneNumber, recaptcha);
             setConfirmationResult(confirmation);
@@ -461,12 +471,13 @@ export const Form = () => {
 
     const verifyOtp = async () => {
         if (!confirmationResult) return alert("Send OTP first!");
+
         try {
             await confirmationResult.confirm(otp);
             alert("✅ OTP Verified!");
             setVerified(true);
         } catch (err) {
-            console.error("OTP verification error:", err);
+            console.error(err);
             alert("❌ Invalid OTP");
             setVerified(false);
         }
