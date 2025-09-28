@@ -31,7 +31,7 @@ export const Banner = () => {
           <p className='text-center md:text-left md:hidden'>One child. One expert. 100% focus. Personalized 1-on-1 tuition  that builds clarity, confidence, and results parents can trust.</p>
 
           {/* call to action */}
-          <button className='w-[40%] px-4 py-2 bg-forest text-white rounded-md mt-3 md:mt-14 '> <a href="#contact_us" > Book & Call</a></button>
+          <button className='w-[40%] px-4 py-2 bg-forest text-white rounded-md mt-3 md:mt-14 z-10'> <a href="#contact_us" > Book & Call</a></button>
 
         </div>
         {/* image-container */}

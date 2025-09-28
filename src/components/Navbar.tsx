@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 const Navigations = [
     { menu: "Home", path: "/" },
-   
+
 ]
 
 const Navbar = () => {
@@ -92,7 +92,7 @@ const Navbar = () => {
                         </Link>
                     ))}
                     <button className="px-3 py-2 bg-forest text-cream rounded-[5px]">
-                        Book a call
+                        <a href='#contact_us'>  Book a call</a>
                     </button>
                 </div>
             </div>
