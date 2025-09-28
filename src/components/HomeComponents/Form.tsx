@@ -572,7 +572,7 @@ export const Form = () => {
                             <div className="w-[100%] bg-coral flex items-center justify-center">
                                 <button
                                     type="button"
-                                    className=" w-[100%]  p-2 rounded-[7px] text-white"
+                                    className=" w-[100%]  p-2 rounded-[7px] text-white  text-[14px] md:text-[18px]"
                                     onClick={sendOtp}
                                     disabled={loading || verified}
                                 >
@@ -612,7 +612,7 @@ export const Form = () => {
                                         <div className="w-[100%] bg-[#00A065]  flex items-center justify-center">
                                             <button
                                                 type="button"
-                                                className="bg-[#00A065] p-2 rounded-[7px] text-white"
+                                                className="bg-[#00A065] p-2 rounded-[7px] text-white text-[14px] md:text-[18px]"
                                                 onClick={verifyOtp}
                                                 disabled={loading}
                                             >
