@@ -596,22 +596,29 @@ export const Form = () => {
                         <div className="mt-4">
                             {confirmationResult && !verified && (
                                 <div className="mt-4">
+
                                     <label className="text-white flex flex-col">Enter OTP:</label>
-                                    <input
-                                        className="rounded p-2 text-black"
-                                        type="text"
-                                        value={otp}
-                                        onChange={(e) => setOtp(e.target.value)}
-                                        placeholder="Enter OTP"
-                                    />
-                                    <button
-                                        type="button"
-                                        className="bg-green-100 mt-2 p-2 rounded-[7px] text-black"
-                                        onClick={verifyOtp}
-                                        disabled={loading}
-                                    >
-                                        {loading ? "Verifying..." : "Verify OTP"}
-                                    </button>
+                                    <div className="bg-white rounded flex">
+                                        <div>
+                                            <input
+                                                className="rounded p-2 text-black outline-none"
+                                                type="text"
+                                                value={otp}
+                                                onChange={(e) => setOtp(e.target.value)}
+                                                placeholder="Enter OTP"
+                                            />
+                                        </div>
+                                        <div className="w-[100%] bg-coral flex items-center justify-center">
+                                            <button
+                                                type="button"
+                                                className="bg-[#00A065] mt-2 p-2 rounded-[7px] text-white"
+                                                onClick={verifyOtp}
+                                                disabled={loading}
+                                            >
+                                                {loading ? "Verifying..." : "Verify OTP"}
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
 
