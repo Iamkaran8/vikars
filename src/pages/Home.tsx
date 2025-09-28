@@ -14,13 +14,11 @@ export const Home = () => {
       <Banner />
       <WhatWeOffer />
       <Form />
-
       <Program />
       <VikarsSection />
       <WorkshopSection />
       <Faqs />
       <BookDemo />
-
     </>
   )
 }

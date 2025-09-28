@@ -1,9 +1,7 @@
-
-
-
 // import { useState } from "react";
 // import { auth } from "../../firebase/setup";
-// import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+// import { RecaptchaVerifier, signInWithPhoneNumber, type ConfirmationResult } from "firebase/auth";
+// import { useNavigate } from "react-router-dom";
 
 // interface FormData {
 //     Name: string;
@@ -22,16 +20,28 @@
 //         Phone: ""
 //     });
 
+//     const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
+//     const [otp, setOtp] = useState<string>("");
+//     const [verified, setVerified] = useState<boolean>(false);
+//     const [loading, setLoading] = useState<boolean>(false);
+
 //     // Handle input changes
 //     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 //         const { name, value } = e.target;
-//         setFormData({ ...formData, [name]: value }); // Keep all fields as strings
+//         setFormData({ ...formData, [name]: value });
 //     };
 
-//     // Submit form data to Google Sheet
+//     const navigate = useNavigate()
+
 //     // Submit form data to Google Sheet
 //     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 //         e.preventDefault();
+
+//         // Check if phone is verified before submitting
+//         if (!verified) {
+//             alert("⚠️ Please verify your phone number before submitting the form!");
+//             return;
+//         }
 
 //         try {
 //             // Add Date & Time automatically
@@ -62,6 +72,10 @@
 //             if (data.status === "success") {
 //                 alert(`✅ Hello ${formData.Name}, your details are saved!`);
 //                 setFormData({ Name: "", Email: "", Board: "", Location: "", Phone: "" });
+//                 setOtp("");
+//                 setVerified(false);
+//                 setConfirmationResult(null);
+//                 navigate('/thankyou')
 //             } else {
 //                 alert("⚠️ Something went wrong. Please try again!");
 //             }
@@ -71,42 +85,92 @@
 //         }
 //     };
 
-
 //     // Send OTP via Firebase
 //     const sendOtp = async () => {
+//         if (!formData.Phone) {
+//             alert("⚠️ Please enter your phone number!");
+//             return;
+//         }
+//         if (formData.Phone.length !== 10) {
+//             alert("⚠️ Phone number must be exactly 10 digits!");
+//             return;
+//         }
+
+//         setLoading(true);
 //         try {
 //             const phoneNumber = formData.Phone.startsWith("+")
 //                 ? formData.Phone
 //                 : `+91${formData.Phone}`;
-//             const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {});
-//             const confirmation = await signInWithPhoneNumber(auth, phoneNumber, recaptcha);
-//             console.log("OTP sent:", confirmation);
+
+//             const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {
+//                 'size': 'invisible'
+//             });
+
+//             const result = await signInWithPhoneNumber(auth, phoneNumber, recaptcha);
+//             setConfirmationResult(result);
+//             console.log("OTP sent:", result);
+//             alert("✅ OTP sent to your phone number!");
 //         } catch (err) {
 //             console.error("OTP Error:", err);
+//             alert("❌ Failed to send OTP. Please try again!");
+//         } finally {
+//             setLoading(false);
+//         }
+//     };
+
+//     // Verify OTP
+//     const verifyOtp = async () => {
+//         if (!confirmationResult) {
+//             alert("⚠️ Please send OTP first!");
+//             return;
+//         }
+
+//         if (!otp) {
+//             alert("⚠️ Please enter the OTP!");
+//             return;
+//         }
+
+//         setLoading(true);
+//         try {
+//             const result = await confirmationResult.confirm(otp);
+//             console.log("Phone verification successful:", result);
+//             setVerified(true);
+//             alert("✅ Phone number verified successfully!");
+//         } catch (err) {
+//             console.error("OTP Verification Error:", err);
+//             alert("❌ Invalid OTP. Please try again!");
+//         } finally {
+//             setLoading(false);
 //         }
 //     };
 
 //     return (
-//         <div className="cont">
-//             <div className="bg-forest rounded-lg flex flex-col lg:flex-row md:flex-col pt-8 px-4 py-4">
+
+//         <div className="bg-forest  pt-8 px-4 py-4" id="contact_us">
+//             <div className="cont flex flex-col lg:flex-row lg:px-10 px-0">
 //                 {/* Left section */}
-//                 <div className="p-8 gap-6 flex flex-col w-full lg:w-1/2 md:w-full">
-//                     <h2 className="text-32 text-white font-semibold leading-tight">
-//                         Book Your Free Online Demo Class See the Difference in Just 30 Minutes
-//                     </h2>
-//                     <p className="text-white font-light pt-2">
-//                         Personalised 1:1 learning that adapts to your child’s pace. Watch doubts vanish and confidence grow.
-//                     </p>
-//                     <h3 className="bg-cream inline-flex text-center text-forest font-bold leading-tight p-4 rounded-lg">
-//                         Hurry — limited demo slots available today! Trusted by 5,000+ parents across India.
-//                     </h3>
-//                     <p className="text-white pt-4">
-//                         Bonus: Get a free detailed learning report + customised study plan after your trial
-//                     </p>
+//                 <div className="p-2 md:p-8 gap-6 flex flex-col w-full lg:w-1/2 md:w-full justify-between">
+//                     <div>
+//                         <h2 className="text-32 text-white font-semibold leading-tight">
+//                             Book Your Free Online Demo Class See the Difference in Just 30 Minutes
+//                         </h2>
+//                         <p className="text-white font-light pt-2">
+//                             Personalised 1:1 learning that adapts to your child’s pace. Watch doubts vanish and confidence grow.
+//                         </p>
+//                     </div>
+//                     <div>
+//                         <h3 className="bg-cream inline-flex text-center text-forest font-bold leading-tight p-4 rounded-lg">
+//                             Hurry — limited demo slots available today! Trusted by 5,000+ parents across India.
+//                         </h3>
+//                         <p className="text-white pt-4">
+//                             Bonus: Get a free detailed learning report + customised study plan after your trial
+//                         </p>
+//                     </div>
+
 //                 </div>
 
 //                 {/* Right form section */}
-//                 <div className="w-full lg:w-1/2 md:w-full md:px-32">
+//                 <div className="w-full lg:w-1/2 md:w-full lg:px-32 md:px-10 px-2 pb-4">
 //                     <form onSubmit={handleSubmit} className="flex flex-col justify-center">
 //                         <label className="text-white flex flex-col">Name:</label>
 //                         <input
@@ -156,43 +220,123 @@
 //                         <br />
 
 //                         <label className="text-white flex flex-col">Phone:</label>
-//                         <input
-//                             className="rounded p-2 text-black"
-//                             type="text"
-//                             name="Phone"
-//                             value={formData.Phone}
-//                             onChange={handleChange}
-//                         />
-//                         <button
-//                             type="button"
-//                             className="bg-red-100 mt-4 p-2 rounded-[7px] text-black"
-//                             onClick={sendOtp}
-//                         >
-//                             Send OTP
-//                         </button>
-//                         <div id="recaptcha"></div>
+//                         <div className="bg-white rounded flex">
+//                             <div>
+//                                 <input
+//                                     className="rounded p-2 text-black outline-none"
+//                                     type="text"
+//                                     name="Phone"
+//                                     value={formData.Phone}
+//                                     onChange={handleChange}
+//                                     required
+//                                     maxLength={10}
+//                                 />
+//                             </div>
+//                             <div className="w-[100%] bg-coral flex items-center justify-center">
+//                                 <button
+//                                     type="button"
+//                                     className=" w-[100%]  p-2 rounded-[7px] text-white"
+//                                     onClick={sendOtp}
+//                                     disabled={loading || verified}
+//                                 >
+//                                     {loading ? "Sending OTP..." : "Send OTP"}
+//                                 </button>
+//                             </div>
+
+//                         </div>
+
+
+
+//                         {/* OTP Verification Section */}
+//                         <div className="mt-4">
+
+
+//                             {confirmationResult && !verified && (
+//                                 <div className="mt-4">
+//                                     <label className="text-white flex flex-col">Enter OTP:</label>
+//                                     <input
+//                                         className="rounded p-2 text-black"
+//                                         type="text"
+//                                         value={otp}
+//                                         onChange={(e) => setOtp(e.target.value)}
+//                                         placeholder="Enter OTP"
+//                                     />
+//                                     <button
+//                                         type="button"
+//                                         className="bg-green-100 mt-2 p-2 rounded-[7px] text-black"
+//                                         onClick={verifyOtp}
+//                                         disabled={loading}
+//                                     >
+//                                         {loading ? "Verifying..." : "Verify OTP"}
+//                                     </button>
+//                                 </div>
+//                             )}
+
+//                             {verified && (
+//                                 <div className="mt-2 p-2 bg-green-100 rounded text-black">
+//                                     ✅ Phone verified successfully!
+//                                 </div>
+//                             )}
+
+//                             <div id="recaptcha"></div>
+//                         </div>
 //                         <br />
 
 //                         <div className="flex items-center justify-center">
 //                             <button
 //                                 type="submit"
-//                                 className="flex justify-center bg-[#E95D5C] text-white py-1 px-8 rounded w-max"
+//                                 className={`flex w-[100%] py-2 justify-center py-1 px-8 rounded w-max bg-coral text-white ${verified ? ' ' : 'bg-gray-400 text-gray-700 cursor-not-allowed'}`}
+//                                 disabled={!verified}
 //                             >
-//                                 Submit
+//                                 {verified ? "Submit" : "Submit (Verify phone first)"}
 //                             </button>
 //                         </div>
 //                     </form>
 //                 </div>
 //             </div>
 //         </div>
+
 //     );
 // };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 import { useState } from "react";
 import { auth } from "../../firebase/setup";
 import { RecaptchaVerifier, signInWithPhoneNumber, type ConfirmationResult } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 interface FormData {
     Name: string;
@@ -215,25 +359,29 @@ export const Form = () => {
     const [otp, setOtp] = useState<string>("");
     const [verified, setVerified] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string>(""); // ✅ new error state
+    const [success, setSuccess] = useState<string>(""); // ✅ success messages
 
     // Handle input changes
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        setError(""); // clear error on input
+        setSuccess(""); // clear success
     };
+
+    const navigate = useNavigate()
 
     // Submit form data to Google Sheet
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        // Check if phone is verified before submitting
         if (!verified) {
-            alert("⚠️ Please verify your phone number before submitting the form!");
+            setError("⚠️ Please verify your phone number before submitting the form!");
             return;
         }
 
         try {
-            // Add Date & Time automatically
             const date = new Date();
             const formDataWithTime = {
                 ...formData,
@@ -241,7 +389,6 @@ export const Form = () => {
                 Time: date.toLocaleTimeString(),
             };
 
-            // Convert to URL encoded form body
             const body = Object.entries(formDataWithTime)
                 .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
                 .join("&");
@@ -259,28 +406,34 @@ export const Form = () => {
             console.log("Google Sheet Response:", data);
 
             if (data.status === "success") {
-                alert(`✅ Hello ${formData.Name}, your details are saved!`);
+                setSuccess(`✅ Hello ${formData.Name}, your details are saved!`);
                 setFormData({ Name: "", Email: "", Board: "", Location: "", Phone: "" });
                 setOtp("");
                 setVerified(false);
                 setConfirmationResult(null);
+                navigate('/thankyou')
             } else {
-                alert("⚠️ Something went wrong. Please try again!");
+                setError("⚠️ Something went wrong. Please try again!");
             }
         } catch (err) {
             console.error("Submit Error:", err);
-            alert("❌ Failed to submit data!");
+            setError("❌ Failed to submit data!");
         }
     };
 
     // Send OTP via Firebase
     const sendOtp = async () => {
         if (!formData.Phone) {
-            alert("⚠️ Please enter your phone number!");
+            setError("⚠️ Please enter your phone number!");
+            return;
+        }
+        if (formData.Phone.length !== 10) {
+            setError("⚠️ Phone number must be exactly 10 digits!");
             return;
         }
 
         setLoading(true);
+        setError("");
         try {
             const phoneNumber = formData.Phone.startsWith("+")
                 ? formData.Phone
@@ -293,10 +446,10 @@ export const Form = () => {
             const result = await signInWithPhoneNumber(auth, phoneNumber, recaptcha);
             setConfirmationResult(result);
             console.log("OTP sent:", result);
-            alert("✅ OTP sent to your phone number!");
+            setSuccess("✅ OTP sent to your phone number!");
         } catch (err) {
             console.error("OTP Error:", err);
-            alert("❌ Failed to send OTP. Please try again!");
+            setError("❌ Failed to send OTP. Please try again!");
         } finally {
             setLoading(false);
         }
@@ -305,31 +458,31 @@ export const Form = () => {
     // Verify OTP
     const verifyOtp = async () => {
         if (!confirmationResult) {
-            alert("⚠️ Please send OTP first!");
+            setError("⚠️ Please send OTP first!");
             return;
         }
 
         if (!otp) {
-            alert("⚠️ Please enter the OTP!");
+            setError("⚠️ Please enter the OTP!");
             return;
         }
 
         setLoading(true);
+        setError("");
         try {
             const result = await confirmationResult.confirm(otp);
             console.log("Phone verification successful:", result);
             setVerified(true);
-            alert("✅ Phone number verified successfully!");
+            setSuccess("✅ Phone number verified successfully!");
         } catch (err) {
             console.error("OTP Verification Error:", err);
-            alert("❌ Invalid OTP. Please try again!");
+            setError("❌ Invalid OTP. Please try again!");
         } finally {
             setLoading(false);
         }
     };
 
     return (
-
         <div className="bg-forest  pt-8 px-4 py-4" id="contact_us">
             <div className="cont flex flex-col lg:flex-row lg:px-10 px-0">
                 {/* Left section */}
@@ -350,7 +503,6 @@ export const Form = () => {
                             Bonus: Get a free detailed learning report + customised study plan after your trial
                         </p>
                     </div>
-
                 </div>
 
                 {/* Right form section */}
@@ -413,6 +565,7 @@ export const Form = () => {
                                     value={formData.Phone}
                                     onChange={handleChange}
                                     required
+                                    maxLength={10}
                                 />
                             </div>
                             <div className="w-[100%] bg-coral flex items-center justify-center">
@@ -425,15 +578,22 @@ export const Form = () => {
                                     {loading ? "Sending OTP..." : "Send OTP"}
                                 </button>
                             </div>
-
                         </div>
 
-
+                        {/* Error & Success Messages */}
+                        {error && (
+                            <div className="mt-2 p-2 bg-red-100 rounded text-red-700">
+                                {error}
+                            </div>
+                        )}
+                        {success && (
+                            <div className="mt-2 p-2 bg-green-100 rounded text-green-700">
+                                {success}
+                            </div>
+                        )}
 
                         {/* OTP Verification Section */}
                         <div className="mt-4">
-
-
                             {confirmationResult && !verified && (
                                 <div className="mt-4">
                                     <label className="text-white flex flex-col">Enter OTP:</label>
@@ -478,6 +638,5 @@ export const Form = () => {
                 </div>
             </div>
         </div>
-
     );
 };
