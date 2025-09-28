@@ -5,7 +5,7 @@ import { Faqs } from "../components/HomeComponents/Faqs"
 import VikarsSection from "../components/HomeComponents/VikarsSection"
 import { WorkshopSection } from "../components/HomeComponents/WorkShop"
 import {WhatWeOffer} from "../components/HomeComponents/WhatWeOffer"
-import { Form } from "../components/HomeComponents/Form"
+import { Form,  } from "../components/HomeComponents/Form"
  
  
 export const Home = () => {
@@ -14,6 +14,7 @@ export const Home = () => {
       <Banner/>
       <WhatWeOffer />
       <Form />
+      
       <Program />
       <VikarsSection/>
       <WorkshopSection/>
