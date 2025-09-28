@@ -608,10 +608,10 @@ export const Form = () => {
                                                 placeholder="Enter OTP"
                                             />
                                         </div>
-                                        <div className="w-[100%] bg-coral flex items-center justify-center">
+                                        <div className="w-[100%] bg-[#00A065]  flex items-center justify-center">
                                             <button
                                                 type="button"
-                                                className="bg-[#00A065] mt-2 p-2 rounded-[7px] text-white"
+                                                className="bg-[#00A065] p-2 rounded-[7px] text-white"
                                                 onClick={verifyOtp}
                                                 disabled={loading}
                                             >
