@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 
 const Navigations = [
     { menu: "Home", path: "/" },
-    { menu: "Programs", path: "/#programs" },
-    { menu: "Blogs", path: "/blogs" }
+   
 ]
 
 const Navbar = () => {

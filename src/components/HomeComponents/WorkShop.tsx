@@ -17,11 +17,11 @@ export const WorkshopSection = () => {
                     <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 lg:left-28 lg:translate-x-0 bg-[#4984FC] text-white p-4 rounded-[15px] text-16 w-[90%] sm:w-[80%] lg:w-auto">
                         <h4 className="font-bold mb-2 lg:text-24">New Workshop</h4>
                         <div className="flex gap-5 items-center">
-                            <hr className="h-[70px] w-[3px] bg-white rounded-[15px]" />
+                            <hr className="h-[80px] w-[3px] bg-white rounded-[15px]" />
                             <div className="text-12 md:text-20">
-                                <p>Age Group: 10 To 17 Years</p>
-                                <p>Format: Zoom / Google Meet (Live With Recording)</p>
-                                <p>Bonus: Q&A With AI Experts | Certificate Included</p>
+                                <p className="text-16 mb-2">Age Group: 10 To 17 Years</p>
+                                <p className="text-16 mb-2">Format: Zoom / Google Meet (Live With Recording)</p>
+                                <p className="text-16 mb-2">Bonus: Q&A With AI Experts | Certificate Included</p>
                             </div>
                         </div>
                     </div>
@@ -49,9 +49,9 @@ export const WorkshopSection = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6 lg:mt-12 text-center">
                 {[1, 2, 3].map((i) => (
                     <div key={i} className="p-4">
-                        <hr className="w-12 mx-auto border-t-4 border-green-600 mb-3" />
-                        <p className="text-forest font-medium text-sm sm:text-base">
-                            How ChatGPT Works And How To Use It For Homework & Writing
+                        <hr className={`w-[110px] rounded-full mx-auto border-t-4  mb-3 ${i === 1 && 'border-[#00A065]'} ${i === 2 && 'border-[#4984FC]'} ${i === 3 && 'border-[#E95D5C]'}`} />
+                        <p className="text-forest font-medium text-16 md:text-20 sm:text-base">
+                            How ChatGPT Works And How To<br /> Use It For Homework & Writing
                         </p>
                     </div>
                 ))}

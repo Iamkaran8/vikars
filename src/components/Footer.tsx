@@ -15,11 +15,11 @@ export const Footer = () => {
 
       {/* footer details section */}
       <div className="bg-cream w-full rounded-[10px] lg:rounded-[35px] py-8 sm:py-10 md:py-12 lg:py-20 px-5 sm:px-8 md:px-12 lg:px-28 
-                      flex flex-col md:flex-row md:flex-wrap md:justify-between gap-8 sm:gap-10">
+                      flex flex-col md:flex-row md:flex-wrap md:justify-center lg:justify-start gap-8 sm:gap-10">
 
         {/* Logo */}
         <div className="flex justify-center md:justify-start w-full md:w-[40%] lg:w-1/5">
-          <img src={logo} className="w-[120px] sm:w-[140px] lg:w-[180px]" alt="Vikars academy" />
+          <img src={logo} className="" alt="Vikars academy" />
         </div>
 
         {/* Contact Info */}
@@ -44,7 +44,7 @@ export const Footer = () => {
       </div>
 
       {/* copyright section */}
-      <div className="flex flex-col md:flex-row text-gray text-14 sm:text-16 font-medium w-full justify-center md:justify-between items-center pt-5 md:pt-6 lg:pt-8 gap-4 md:gap-0">
+      <div className="flex flex-col md:flex-row text-gray text-14 sm:text-16 font-medium w-full justify-center md:justify-center  items-center pt-5 md:pt-6 lg:pt-8 gap-4 md:gap-8">
         <p className="text-center md:text-left">
           Copyright © 2024 Vikars. All Rights Reserved
         </p>

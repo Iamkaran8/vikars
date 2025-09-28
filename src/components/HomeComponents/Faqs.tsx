@@ -36,7 +36,7 @@ export const Faqs = () => {
       <div className="flex flex-col lg:flex-row px-3 md:px-10 lg:px-28 py-5 lg:py-10 gap-10 lg:px-10 px-3">
         {/* Information container */}
         <div className="w-full lg:w-1/2 flex flex-col justify-between lg:mb-8">
-          <div>
+          <div className="w-[100%] md:w-[100%] lg:w-[80%] ">
             <h3 className="text-forest text-2xl md:text-4xl lg:text-5xl leading-none mb-5 font-bold text-center lg:text-start">
               Common Questions Parents Ask
             </h3>
@@ -64,9 +64,8 @@ export const Faqs = () => {
               </button>
 
               <div
-                className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                  openIndex === i ? "max-h-40 mt-2" : "max-h-0"
-                }`}
+                className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === i ? "max-h-40 mt-2" : "max-h-0"
+                  }`}
               >
                 <p className="text-gray-700">{item.answer}</p>
               </div>

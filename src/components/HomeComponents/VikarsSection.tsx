@@ -6,7 +6,7 @@ const VikarsSection = () => {
             <div className="bg-cream rounded-[36px] p-6 md:p-10 text-center text-20 text-forest font-medium">
 
                 {/* Heading */}
-                <h2 className="text-40 font-bold mb-2">
+                <h2 className="text-28 md:text-40 font-bold mb-2">
                     More Than Just Tuition — The Vikar’s Way
                 </h2>
                 <p className="text-[#12402999] mb-8">
@@ -20,18 +20,18 @@ const VikarsSection = () => {
 
                 {/* Main Paragraph */}
                 <div className='flex items-center flex-col'>
-                    <p className="mb-4 w-[87%]">
-                        At <b>Vikar's Academy</b>, We Don't Just Teach Lessons — We Shape Journeys.
+                    <p className="mb-4 w-[100%] md:w-[87%] text-16 md:text-25">
+                        At <b>Vikar's Academy</b>, We Don't Just Teach Lessons — We Shape Journeys.<br/>
                         Every Child Learns Differently. Some Race Ahead, Some Pause To Explore, And Some Just Need Someone To Believe In
                         Them. That's Why We Created A Space Where <b>Learning Feels Personal, Safe, And Limitless.</b>
                     </p>
 
-                    <p className="mb-4 w-[87%]">
+                    <p className="mb-4 w-[100%] md:w-[87%] text-16 md:text-25">
                         Here, Tutors Aren't Just Subject Experts — They Are Mentors, Motivators, And Partners In Growth. They Celebrate
                         Every “Aha!” Moment, Calm Every Doubt, And Slowly Build The One Thing Exams Can't Measure — Confidence.
                     </p>
 
-                    <p className="mb-4 w-[87%]">
+                    <p className="mb-4 w-[100%] md:w-[87%] text-16 md:text-25">
                         Parents Trust Us Because We're Transparent. Every Week, You See Progress, Strengths, And The Exact Roadmap Ahead.
                         Students Love Us Because Learning Doesn't Feel Like Pressure Anymore — It Feels Like Discovery.
                     </p>
@@ -46,7 +46,7 @@ const VikarsSection = () => {
                 </div>
 
 
-                <p>
+                <p className='text-16 md:text-25'>
                     Because At Vikar's,<br />
                     It's Never Just About Marks. It's About Giving Your Child
                     <b>The Skills, Courage, And Joy Of Learning That Last A Lifetime.</b>
