@@ -172,163 +172,167 @@ import { auth } from "../../firebase/setup";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 
 interface FormData {
-  name: string;
-  email: string;
-  board: string;
-  location: string;
-  phone: string;
+    Name: string;
+    Email: string;
+    Board: string;
+    Location: string;
+    Phone: string;
 }
 
 export const Form = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    board: "",
-    location: "",
-    phone: ""
-  });
+    const [formData, setFormData] = useState<FormData>({
+        Name: "",
+        Email: "",
+        Board: "",
+        Location: "",
+        Phone: ""
+    });
 
-  // Handle input changes
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value }); // Keep all fields as strings
-  };
+    // Handle input changes
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value }); // Keep all fields as strings
+    };
 
-  // Submit form data to Google Sheet
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    // Submit form data to Google Sheet
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-    // Build URL-encoded body dynamically
-    const body = Object.entries(formData)
-      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-      .join("&");
+        // Build URL-encoded body dynamically
+        const body = Object.entries(formData)
+            .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+            .join("&");
 
-    fetch(
-      "https://script.google.com/macros/s/AKfycbyynMlNRw0gC4sxYQ1Gy03DzvywhbvnflshLY75tiu40U8hKEBRGndxinDjYI_km7yF/exec",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body
-      }
-    )
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        alert(`Hello ${formData.name}, your details are saved!`);
-        setFormData({ name: "", email: "", board: "", location: "", phone: "" }); // reset form
-      })
-      .catch(err => console.error(err));
-  };
 
-  // Send OTP via Firebase
-  const sendOtp = async () => {
-    try {
-      const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {});
-      const confirmation = await signInWithPhoneNumber(auth, `+91${formData.phone}`, recaptcha);
-      console.log("OTP sent:", confirmation);
-    } catch (err) {
-      console.error("OTP Error:", err);
-    }
-  };
+        fetch(
+            "https://script.google.com/macros/s/AKfycbyynMlNRw0gC4sxYQ1Gy03DzvywhbvnflshLY75tiu40U8hKEBRGndxinDjYI_km7yF/exec",
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `Name=${encodeURIComponent(formData.Name)}&Email=${encodeURIComponent(formData.Email)}&Board=${encodeURIComponent(formData.Board)}&Location=${encodeURIComponent(formData.Location)}&Phone=${encodeURIComponent(formData.Phone)}`
 
-  return (
-    <div className="cont">
-      <div className="bg-forest rounded-lg flex flex-col lg:flex-row md:flex-col pt-8 px-4 py-4">
-        {/* Left section */}
-        <div className="p-8 gap-6 flex flex-col w-full lg:w-1/2 md:w-full">
-          <h2 className="text-32 text-white font-semibold leading-tight">
-            Book Your Free Online Demo Class See the Difference in Just 30 Minutes
-          </h2>
-          <p className="text-white font-light pt-2">
-            Personalised 1:1 learning that adapts to your child’s pace. Watch doubts vanish and confidence grow.
-          </p>
-          <h3 className="bg-cream inline-flex text-center text-forest font-bold leading-tight p-4 rounded-lg">
-            Hurry — limited demo slots available today! Trusted by 5,000+ parents across India.
-          </h3>
-          <p className="text-white pt-4">
-            Bonus: Get a free detailed learning report + customised study plan after your trial
-          </p>
-        </div>
+            }
+        )
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                alert(`Hello ${formData.Name}, your details are saved!`);
+                console.log(formData)
+                setFormData({ Name: "", Email: "", Board: "", Location: "", Phone: "" }); // reset form
+            })
+            .catch(err => console.error(err));
+        console.log(body)
+    };
 
-        {/* Right form section */}
-        <div className="w-full lg:w-1/2 md:w-full md:px-32">
-          <form onSubmit={handleSubmit} className="flex flex-col justify-center">
-            <label className="text-white flex flex-col">Name:</label>
-            <input
-              className="rounded p-2 text-black text-20"
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            <br />
+    // Send OTP via Firebase
+    const sendOtp = async () => {
+        try {
+            const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {});
+            const confirmation = await signInWithPhoneNumber(auth, `+91${formData.Phone}`, recaptcha);
+            console.log("OTP sent:", confirmation);
+        } catch (err) {
+            console.error("OTP Error:", err);
+        }
+    };
 
-            <label className="text-white flex flex-col">Email:</label>
-            <input
-              className="rounded p-2 text-black"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            <br />
+    return (
+        <div className="cont">
+            <div className="bg-forest rounded-lg flex flex-col lg:flex-row md:flex-col pt-8 px-4 py-4">
+                {/* Left section */}
+                <div className="p-8 gap-6 flex flex-col w-full lg:w-1/2 md:w-full">
+                    <h2 className="text-32 text-white font-semibold leading-tight">
+                        Book Your Free Online Demo Class See the Difference in Just 30 Minutes
+                    </h2>
+                    <p className="text-white font-light pt-2">
+                        Personalised 1:1 learning that adapts to your child’s pace. Watch doubts vanish and confidence grow.
+                    </p>
+                    <h3 className="bg-cream inline-flex text-center text-forest font-bold leading-tight p-4 rounded-lg">
+                        Hurry — limited demo slots available today! Trusted by 5,000+ parents across India.
+                    </h3>
+                    <p className="text-white pt-4">
+                        Bonus: Get a free detailed learning report + customised study plan after your trial
+                    </p>
+                </div>
 
-            <div className="flex gap-4">
-              <label className="text-white flex flex-col w-[48%]">
-                Board:
-                <input
-                  className="rounded p-2 text-black"
-                  type="text"
-                  name="board"
-                  value={formData.board}
-                  onChange={handleChange}
-                />
-              </label>
+                {/* Right form section */}
+                <div className="w-full lg:w-1/2 md:w-full md:px-32">
+                    <form onSubmit={handleSubmit} className="flex flex-col justify-center">
+                        <label className="text-white flex flex-col">Name:</label>
+                        <input
+                            className="rounded p-2 text-black text-20"
+                            type="text"
+                            name="Name"
+                            value={formData.Name}
+                            onChange={handleChange}
+                            required
+                        />
+                        <br />
 
-              <label className="text-white flex flex-col w-[48%]">
-                Location:
-                <input
-                  className="rounded p-2 text-black"
-                  type="text"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleChange}
-                />
-              </label>
+                        <label className="text-white flex flex-col">Email:</label>
+                        <input
+                            className="rounded p-2 text-black"
+                            type="email"
+                            name="Email"
+                            value={formData.Email}
+                            onChange={handleChange}
+                            required
+                        />
+                        <br />
+
+                        <div className="flex gap-4">
+                            <label className="text-white flex flex-col w-[48%]">
+                                Board:
+                                <input
+                                    className="rounded p-2 text-black"
+                                    type="text"
+                                    name="Board"
+                                    value={formData.Board}
+                                    onChange={handleChange}
+                                />
+                            </label>
+
+                            <label className="text-white flex flex-col w-[48%]">
+                                Location:
+                                <input
+                                    className="rounded p-2 text-black"
+                                    type="text"
+                                    name="Location"
+                                    value={formData.Location}
+                                    onChange={handleChange}
+                                />
+                            </label>
+                        </div>
+                        <br />
+
+                        <label className="text-white flex flex-col">Phone:</label>
+                        <input
+                            className="rounded p-2 text-black"
+                            type="text"
+                            name="Phone"
+                            value={formData.Phone}
+                            onChange={handleChange}
+                        />
+                        <button
+                            type="button"
+                            className="bg-red-100 mt-4 p-2 rounded-[7px] text-black"
+                            onClick={sendOtp}
+                        >
+                            Send OTP
+                        </button>
+                        <div id="recaptcha"></div>
+                        <br />
+
+                        <div className="flex items-center justify-center">
+                            <button
+                                type="submit"
+                                className="flex justify-center bg-[#E95D5C] text-white py-1 px-8 rounded w-max"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <br />
-
-            <label className="text-white flex flex-col">Phone:</label>
-            <input
-              className="rounded p-2 text-black"
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-            />
-            <button
-              type="button"
-              className="bg-red-100 mt-4 p-2 rounded-[7px] text-black"
-              onClick={sendOtp}
-            >
-              Send OTP
-            </button>
-            <div id="recaptcha"></div>
-            <br />
-
-            <div className="flex items-center justify-center">
-              <button
-                type="submit"
-                className="flex justify-center bg-[#E95D5C] text-white py-1 px-8 rounded w-max"
-              >
-                Submit
-              </button>
-            </div>
-          </form>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
