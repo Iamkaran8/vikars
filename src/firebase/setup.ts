@@ -1,6 +1,7 @@
 
 import { initializeApp } from "firebase/app";
-import { getAuth, type Auth } from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import type {Auth} from "firebase/auth";
 
 
 

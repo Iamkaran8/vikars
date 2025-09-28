@@ -1,27 +1,26 @@
 import { Banner } from "../components/HomeComponents/Banner"
 import { BookDemo } from "../components/HomeComponents/BookDemo"
 import { Faqs } from "../components/HomeComponents/Faqs"
- import { Program } from "../components/HomeComponents/Program-offered"
+import { Program } from "../components/HomeComponents/Program-offered"
 import VikarsSection from "../components/HomeComponents/VikarsSection"
 import { WorkshopSection } from "../components/HomeComponents/WorkShop"
-import {WhatWeOffer} from "../components/HomeComponents/WhatWeOffer"
-import { Form,  } from "../components/HomeComponents/Form"
- 
- 
+import { WhatWeOffer } from "../components/HomeComponents/WhatWeOffer"
+import { Form } from "../components/HomeComponents/Form"
+
+
 export const Home = () => {
   return (
     <>
-      <Banner/>
+      <Banner />
       <WhatWeOffer />
       <Form />
-      
+
       <Program />
-      <VikarsSection/>
-      <WorkshopSection/>
+      <VikarsSection />
+      <WorkshopSection />
       <Faqs />
-      <BookDemo/> 
-    
+      <BookDemo />
+
     </>
   )
 }
- 
