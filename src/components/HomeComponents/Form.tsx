@@ -210,7 +210,7 @@ export const Form = () => {
         Location: "",
         Phone: ""
     });
-    
+
     const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
     const [otp, setOtp] = useState<string>("");
     const [verified, setVerified] = useState<boolean>(false);
@@ -225,7 +225,7 @@ export const Form = () => {
     // Submit form data to Google Sheet
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
+
         // Check if phone is verified before submitting
         if (!verified) {
             alert("⚠️ Please verify your phone number before submitting the form!");
@@ -279,17 +279,17 @@ export const Form = () => {
             alert("⚠️ Please enter your phone number!");
             return;
         }
-        
+
         setLoading(true);
         try {
             const phoneNumber = formData.Phone.startsWith("+")
                 ? formData.Phone
                 : `+91${formData.Phone}`;
-                
+
             const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {
                 'size': 'invisible'
             });
-            
+
             const result = await signInWithPhoneNumber(auth, phoneNumber, recaptcha);
             setConfirmationResult(result);
             console.log("OTP sent:", result);
@@ -308,12 +308,12 @@ export const Form = () => {
             alert("⚠️ Please send OTP first!");
             return;
         }
-        
+
         if (!otp) {
             alert("⚠️ Please enter the OTP!");
             return;
         }
-        
+
         setLoading(true);
         try {
             const result = await confirmationResult.confirm(otp);
@@ -329,8 +329,9 @@ export const Form = () => {
     };
 
     return (
-        <div className="cont">
-            <div className="bg-forest rounded-lg flex flex-col lg:flex-row md:flex-col pt-8 px-4 py-4">
+
+        <div className="bg-forest  pt-8 px-4 py-4" id="contact_us">
+            <div className="cont flex flex-col lg:flex-row lg:px-10 px-3">
                 {/* Left section */}
                 <div className="p-8 gap-6 flex flex-col w-full lg:w-1/2 md:w-full">
                     <h2 className="text-32 text-white font-semibold leading-tight">
@@ -406,7 +407,7 @@ export const Form = () => {
                             onChange={handleChange}
                             required
                         />
-                        
+
                         {/* OTP Verification Section */}
                         <div className="mt-4">
                             <button
@@ -417,7 +418,7 @@ export const Form = () => {
                             >
                                 {loading ? "Sending OTP..." : "Send OTP"}
                             </button>
-                            
+
                             {confirmationResult && !verified && (
                                 <div className="mt-4">
                                     <label className="text-white flex flex-col">Enter OTP:</label>
@@ -438,13 +439,13 @@ export const Form = () => {
                                     </button>
                                 </div>
                             )}
-                            
+
                             {verified && (
                                 <div className="mt-2 p-2 bg-green-100 rounded text-black">
                                     ✅ Phone verified successfully!
                                 </div>
                             )}
-                            
+
                             <div id="recaptcha"></div>
                         </div>
                         <br />
@@ -462,5 +463,6 @@ export const Form = () => {
                 </div>
             </div>
         </div>
+
     );
 };

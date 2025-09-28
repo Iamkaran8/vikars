@@ -2,7 +2,7 @@ import placeholder from '../../assets/placeholder.png'
 
 const VikarsSection = () => {
     return (
-        <section className="px-2 py-10 lg:py-20 cont">
+        <section className="px-5 py-10 lg:py-20 cont lg:px-10 ">
             <div className="bg-cream rounded-[36px] p-6 md:p-10 text-center text-20 text-forest font-medium">
 
                 {/* Heading */}

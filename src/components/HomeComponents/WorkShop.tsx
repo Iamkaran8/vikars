@@ -2,7 +2,7 @@ import workshopImg from "../../assets/workshop.png"; // replace with your image
 
 export const WorkshopSection = () => {
     return (
-        <section className="py-5 md:py-10 lg:py-16 cont">
+        <section className="py-5 md:py-10 lg:py-16 cont lg:px-10 px-3">
             <div className="flex flex-col lg:flex-row items-center gap-10 md:gap-16 lg:mb-28">
 
                 {/* Left Image + Overlay */}

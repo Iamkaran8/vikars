@@ -42,7 +42,7 @@ const Navbar = () => {
                     {Navigations.map((item) => (
                         <Link to={item.path} key={item.menu}>{item.menu}</Link>
                     ))}
-                    <button className='px-3 py-2 bg-forest text-cream rounded-[5px]'>Book a call</button>
+                    <button className='px-3 py-2 bg-forest text-cream rounded-[5px]' > <a href='#contact_us'> Book a call</a></button>
                 </div>
 
                 {/* Hamburger for Mobile */}

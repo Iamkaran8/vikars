@@ -5,7 +5,7 @@ import bannerImg1 from '../../assets/home-textIcon.png'
 
 export const Banner = () => {
   return (
-    <div className='cont'>
+    <div className='cont lg:px-10 px-3'>
       <div className="bg-cream flex flex-col lg:flex-row lg:pl-24 rounded-[15px] lg:rounded-[35px] items-end overflow-hidden">
 
         {/* text-container */}
@@ -21,16 +21,17 @@ export const Banner = () => {
           </p>
 
           {/* one to one */}
-          <h1 className="text-center md:text-left text-coral text-28 md:text-36 lg:text-38 font-extrabold pt-2 lg:text-nowrap leading-tight">One-on-One Personalized Classes</h1>
+          <h1 className="mt-4 text-center md:text-left text-coral text-28 md:text-36 lg:text-38 font-extrabold pt-2 lg:text-nowrap leading-tight">One-on-One Personalized Classes</h1>
 
           {/* heading */}
           <h2 className='text-center md:text-left text-32 md:text-48 lg:text-64 font-bold md:text-nowrap leading-tight py-3'>With Expert Tutors<br />That Guarantee Results!</h2>
 
           {/* description */}
-          <p className='text-center md:text-left'>One child. One expert. 100% focus. Personalized 1-on-1 tuition that builds clarity, confidence, and results parents can trust.</p>
+          <p className='text-center md:text-left text-nowrap hidden md:block'>One child. One expert. 100% focus. Personalized 1-on-1 tuition<br/> that builds clarity, confidence, and results parents can trust.</p>
+          <p className='text-center md:text-left md:hidden'>One child. One expert. 100% focus. Personalized 1-on-1 tuition  that builds clarity, confidence, and results parents can trust.</p>
 
           {/* call to action */}
-          <button className='w-[40%] px-4 py-2 bg-forest text-white rounded-md mt-3 md:mt-8'>Book & Call</button>
+          <button className='w-[40%] px-4 py-2 bg-forest text-white rounded-md mt-3 md:mt-14 '> <a href="#contact_us" > Book & Call</a></button>
 
         </div>
         {/* image-container */}

@@ -33,7 +33,7 @@ export const Faqs = () => {
 
   return (
     <div className="cont">
-      <div className="flex flex-col lg:flex-row px-3 md:px-10 lg:px-28 py-5 lg:py-10 gap-10">
+      <div className="flex flex-col lg:flex-row px-3 md:px-10 lg:px-28 py-5 lg:py-10 gap-10 lg:px-10 px-3">
         {/* Information container */}
         <div className="w-full lg:w-1/2 flex flex-col justify-between lg:mb-8">
           <div>
