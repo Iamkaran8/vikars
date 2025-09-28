@@ -376,6 +376,7 @@ export const Form = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        const sheetUrl = import.meta.env.VITE_GOOGLE_SHEET_URL
         if (!verified) {
             setError("⚠️ Please verify your phone number before submitting the form!");
             return;
@@ -394,7 +395,7 @@ export const Form = () => {
                 .join("&");
 
             const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbw38TcByi0hyzwkZNGskVOss6ObGtgVLAk3HV5LAdEnRPEkq2_Yr5ZjeXapXXh195uh/exec",
+                `${sheetUrl}`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
