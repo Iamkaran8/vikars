@@ -19,27 +19,29 @@ const VikarsSection = () => {
                 </div>
 
                 {/* Main Paragraph */}
-                <p className="mb-4">
-                    At <b>Vikar's Academy</b>, We Don't Just Teach Lessons — We Shape Journeys.
-                    Every Child Learns Differently. Some Race Ahead, Some Pause To Explore, And Some Just Need Someone To Believe In
-                    Them. That's Why We Created A Space Where <b>Learning Feels Personal, Safe, And Limitless.</b>
-                </p>
+                <div className='flex items-center flex-col'>
+                    <p className="mb-4 w-[87%]">
+                        At <b>Vikar's Academy</b>, We Don't Just Teach Lessons — We Shape Journeys.
+                        Every Child Learns Differently. Some Race Ahead, Some Pause To Explore, And Some Just Need Someone To Believe In
+                        Them. That's Why We Created A Space Where <b>Learning Feels Personal, Safe, And Limitless.</b>
+                    </p>
 
-                <p className="mb-4">
-                    Here, Tutors Aren't Just Subject Experts — They Are Mentors, Motivators, And Partners In Growth. They Celebrate
-                    Every “Aha!” Moment, Calm Every Doubt, And Slowly Build The One Thing Exams Can't Measure — Confidence.
-                </p>
+                    <p className="mb-4 w-[87%]">
+                        Here, Tutors Aren't Just Subject Experts — They Are Mentors, Motivators, And Partners In Growth. They Celebrate
+                        Every “Aha!” Moment, Calm Every Doubt, And Slowly Build The One Thing Exams Can't Measure — Confidence.
+                    </p>
 
-                <p className="mb-4">
-                    Parents Trust Us Because We're Transparent. Every Week, You See Progress, Strengths, And The Exact Roadmap Ahead.
-                    Students Love Us Because Learning Doesn't Feel Like Pressure Anymore — It Feels Like Discovery.
-                </p>
+                    <p className="mb-4 w-[87%]">
+                        Parents Trust Us Because We're Transparent. Every Week, You See Progress, Strengths, And The Exact Roadmap Ahead.
+                        Students Love Us Because Learning Doesn't Feel Like Pressure Anymore — It Feels Like Discovery.
+                    </p>
+                </div>
 
                 {/* 3C Promise */}
                 <div className="my-8">
                     <p className="mb-4">We Call It The 3C Promise:</p>
-                    <b>👉 Confidence To Believe In Themselves</b><br/>
-                    <b>👉 Clarity To Master Every Concept</b><br/>
+                    <b>👉 Confidence To Believe In Themselves</b><br />
+                    <b>👉 Clarity To Master Every Concept</b><br />
                     <b>👉 Character To Thrive Beyond Exams</b>
                 </div>
 

@@ -18,7 +18,7 @@ export const BookDemo = () => {
             No obligation. No spam. Just honest teaching.
           </p>
           <button className="w-full sm:w-[80%] md:w-[70%] lg:w-[60%] px-4 py-3 bg-forest text-white rounded-md font-medium text-sm sm:text-base md:text-lg">
-            Book Your Free Demo Now
+            <a href="#contact_us" >  Book Your Free Demo Now</a>
           </button>
         </div>
       </div>

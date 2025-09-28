@@ -331,25 +331,30 @@ export const Form = () => {
     return (
 
         <div className="bg-forest  pt-8 px-4 py-4" id="contact_us">
-            <div className="cont flex flex-col lg:flex-row lg:px-10 px-3">
+            <div className="cont flex flex-col lg:flex-row lg:px-10 px-0">
                 {/* Left section */}
-                <div className="p-8 gap-6 flex flex-col w-full lg:w-1/2 md:w-full">
-                    <h2 className="text-32 text-white font-semibold leading-tight">
-                        Book Your Free Online Demo Class See the Difference in Just 30 Minutes
-                    </h2>
-                    <p className="text-white font-light pt-2">
-                        Personalised 1:1 learning that adapts to your child’s pace. Watch doubts vanish and confidence grow.
-                    </p>
-                    <h3 className="bg-cream inline-flex text-center text-forest font-bold leading-tight p-4 rounded-lg">
-                        Hurry — limited demo slots available today! Trusted by 5,000+ parents across India.
-                    </h3>
-                    <p className="text-white pt-4">
-                        Bonus: Get a free detailed learning report + customised study plan after your trial
-                    </p>
+                <div className="p-2 md:p-8 gap-6 flex flex-col w-full lg:w-1/2 md:w-full justify-between">
+                    <div>
+                        <h2 className="text-32 text-white font-semibold leading-tight">
+                            Book Your Free Online Demo Class See the Difference in Just 30 Minutes
+                        </h2>
+                        <p className="text-white font-light pt-2">
+                            Personalised 1:1 learning that adapts to your child’s pace. Watch doubts vanish and confidence grow.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 className="bg-cream inline-flex text-center text-forest font-bold leading-tight p-4 rounded-lg">
+                            Hurry — limited demo slots available today! Trusted by 5,000+ parents across India.
+                        </h3>
+                        <p className="text-white pt-4">
+                            Bonus: Get a free detailed learning report + customised study plan after your trial
+                        </p>
+                    </div>
+
                 </div>
 
                 {/* Right form section */}
-                <div className="w-full lg:w-1/2 md:w-full md:px-32">
+                <div className="w-full lg:w-1/2 md:w-full lg:px-32 md:px-10 px-2 pb-4">
                     <form onSubmit={handleSubmit} className="flex flex-col justify-center">
                         <label className="text-white flex flex-col">Name:</label>
                         <input
@@ -399,25 +404,35 @@ export const Form = () => {
                         <br />
 
                         <label className="text-white flex flex-col">Phone:</label>
-                        <input
-                            className="rounded p-2 text-black"
-                            type="text"
-                            name="Phone"
-                            value={formData.Phone}
-                            onChange={handleChange}
-                            required
-                        />
+                        <div className="bg-white rounded flex">
+                            <div>
+                                <input
+                                    className="rounded p-2 text-black outline-none"
+                                    type="text"
+                                    name="Phone"
+                                    value={formData.Phone}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                            <div className="w-[100%] bg-coral flex items-center justify-center">
+                                <button
+                                    type="button"
+                                    className=" w-[100%]  p-2 rounded-[7px] text-white"
+                                    onClick={sendOtp}
+                                    disabled={loading || verified}
+                                >
+                                    {loading ? "Sending OTP..." : "Send OTP"}
+                                </button>
+                            </div>
+
+                        </div>
+
+
 
                         {/* OTP Verification Section */}
                         <div className="mt-4">
-                            <button
-                                type="button"
-                                className="bg-red-100 mt-2 p-2 rounded-[7px] text-black"
-                                onClick={sendOtp}
-                                disabled={loading || verified}
-                            >
-                                {loading ? "Sending OTP..." : "Send OTP"}
-                            </button>
+
 
                             {confirmationResult && !verified && (
                                 <div className="mt-4">
@@ -453,7 +468,7 @@ export const Form = () => {
                         <div className="flex items-center justify-center">
                             <button
                                 type="submit"
-                                className={`flex justify-center py-1 px-8 rounded w-max ${verified ? 'bg-[#E95D5C] text-white' : 'bg-gray-400 text-gray-700 cursor-not-allowed'}`}
+                                className={`flex w-[100%] py-2 justify-center py-1 px-8 rounded w-max bg-coral text-white ${verified ? ' ' : 'bg-gray-400 text-gray-700 cursor-not-allowed'}`}
                                 disabled={!verified}
                             >
                                 {verified ? "Submit" : "Submit (Verify phone first)"}

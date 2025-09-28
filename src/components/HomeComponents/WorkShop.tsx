@@ -38,7 +38,7 @@ export const WorkshopSection = () => {
                     <button className="relative p-[3px] rounded-md text-white font-medium bg-[#003322]">
                         <span className="absolute inset-0 rounded-md p-[2px] bg-gradient-to-r from-[#97FF5E] via-[#5EFFFF] to-[#00A065] animate-border"></span>
                         <span className="relative block bg-[#003322] rounded-md px-6 py-2">
-                            Register Now
+                            <a href="#contact_us" >Register Now</a>
                         </span>
                     </button>
                     <p className="text-forest mt-2 text-16">Limited Seats!</p>
