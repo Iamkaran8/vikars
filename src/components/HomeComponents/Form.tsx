@@ -361,6 +361,8 @@ export const Form = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>(""); // ✅ new error state
     const [success, setSuccess] = useState<string>(""); // ✅ success messages
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // ✅ new state
+
 
     // Handle input changes
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -381,7 +383,7 @@ export const Form = () => {
             setError("⚠️ Please verify your phone number before submitting the form!");
             return;
         }
-
+ setIsSubmitting(true);
         try {
             const date = new Date();
             const formDataWithTime = {
@@ -419,7 +421,9 @@ export const Form = () => {
         } catch (err) {
             console.error("Submit Error:", err);
             setError("❌ Failed to submit data!");
-        }
+        }finally {
+        setIsSubmitting(false); // ✅ allow form again
+    }
     };
 
     // Send OTP via Firebase
