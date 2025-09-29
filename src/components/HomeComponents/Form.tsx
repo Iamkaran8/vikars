@@ -641,7 +641,7 @@ export const Form = () => {
                             <button
                                 type="submit"
                                 className={`flex w-[100%] py-2 justify-center py-1 px-8 rounded w-max bg-coral text-white ${verified ? ' ' : 'bg-gray-400 text-gray-700 cursor-not-allowed'}`}
-                                disabled={!verified}
+                                disabled={!verified || isSubmitting} 
                             >
                                 {verified ? "Submit" : "Submit (Verify phone first)"}
                             </button>
