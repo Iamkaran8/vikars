@@ -12,6 +12,11 @@ body{
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 @keyframes borderMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
